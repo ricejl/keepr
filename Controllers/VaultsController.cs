@@ -24,7 +24,7 @@ namespace Vaultr.Controllers
             try
             {
                 string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return Ok(_vs.Get(userId));
+                return Ok(_vs.Get());
             }
             catch (Exception e)
             {
