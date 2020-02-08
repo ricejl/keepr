@@ -1,4 +1,4 @@
--- USE keepadb;
+USE keepadb;
 
 -- CREATE TABLE vaults (
 --     id int NOT NULL AUTO_INCREMENT,
@@ -42,6 +42,7 @@
 --         ON DELETE CASCADE
 -- )
 
+-- NOTE ran all tables above this line
 
 -- -- USE THIS LINE FOR GET KEEPS BY VAULTID
 -- SELECT k.* FROM vaultkeeps vk
