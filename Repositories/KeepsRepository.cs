@@ -17,6 +17,7 @@ namespace Keepr.Repositories
 
         internal IEnumerable<Keep> Get()
         {
+            // NOTE get public keeps without login
             string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
             return _db.Query<Keep>(sql);
         }
