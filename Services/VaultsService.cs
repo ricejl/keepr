@@ -22,6 +22,7 @@ namespace Keepr.Services
         {
             var found = _repo.GetById(id);
             if (found == null) { throw new Exception("Invalid id"); }
+            if (userId != found.UserId) { throw new Exception("You don't oooowwwwn me"); }
             return found;
         }
 
@@ -39,10 +40,10 @@ namespace Keepr.Services
             return update;
         }
 
-        internal string Delete(string userId, int id)
+        internal string Delete(int id, string userId)
         {
             var found = _repo.GetById(id);
-            if (found == null) { throw new Exception("Invalid id"); }
+            if (found == null) { throw new Exception("Invalid id sucka"); }
             if (userId != found.UserId) { throw new Exception("You don't own me"); }
             _repo.Delete(id);
             return "Successfully deleted";

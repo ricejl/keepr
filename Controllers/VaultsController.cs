@@ -85,7 +85,7 @@ namespace Vaultr.Controllers
             try
             {
                 string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return Ok(_vs.Delete(userId, id));
+                return Ok(_vs.Delete(id, userId));
             }
             catch (Exception e)
             {
