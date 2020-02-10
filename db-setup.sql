@@ -42,8 +42,6 @@ USE keepadb;
 --         ON DELETE CASCADE
 -- )
 
--- NOTE ran all tables above this line
-
 -- -- USE THIS LINE FOR GET KEEPS BY VAULTID
 -- SELECT k.* FROM vaultkeeps vk
 -- INNER JOIN keeps k ON k.id = vk.keepId 
