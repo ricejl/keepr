@@ -17,21 +17,21 @@ namespace Vaultr.Controllers
         {
             _vs = vs;
         }
-        // [HttpGet]
-        // [Authorize]
-        // public ActionResult<IEnumerable<Vault>> Get()
-        // {
-        //     try
-        //     {
-        //         // FIXME fn unused; need to delete or validate userId matches those in get request
-        //         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //         return Ok(_vs.Get());
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         return BadRequest(e.Message);
-        //     };
-        // }
+        [HttpGet]
+        [Authorize]
+        public ActionResult<IEnumerable<Vault>> Get()
+        {
+            try
+            {
+                // FIXME ? need to delete or validate userId matches those in get request
+                string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                return Ok(_vs.Get());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            };
+        }
 
         [HttpGet("{id}")]
         [Authorize]

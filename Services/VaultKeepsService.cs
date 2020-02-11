@@ -14,27 +14,25 @@ namespace Keepr.Services
             _repo = repo;
         }
 
-        internal IEnumerable<Keep> GetById(Vault v, string userId)
+        internal IEnumerable<Keep> GetById(Vault v)
         {
             var found = _repo.GetById(v);
-            if (found == null) { throw new Exception("Invalid id"); }
-            // for each?? since found is list of keeps or check first and assume rest of keeps userIds are the same
-            // if (userId != found.UserId) { throw new Exception("You don't own this vault."); }
-            if (found.ElementAt(0).UserId != userId) { throw new Exception("Unauthorized"); }
+            // if (found == null) { throw new Exception("Invalid id"); }
+            // if (found.ElementAt(0).UserId != userId) { throw new Exception("Unauthorized"); }
             return found;
         }
 
         internal void Create(VaultKeep newData)
         {
-            var found = _repo.Find(newData);
-            if (found != null) { throw new Exception("Keep already saved."); }
+            VaultKeep found = _repo.Find(newData);
+            if (found != null) { throw new Exception("Keep already saved to vault."); }
             _repo.Create(newData);
         }
 
         internal string Delete(VaultKeep vk)
         {
             VaultKeep found = _repo.Find(vk);
-            if (found != null) { throw new Exception("Keep already saved."); }
+            if (found.UserId != vk.UserId) { throw new Exception("Unauthorized"); }
             _repo.Delete(vk.Id);
             return "Successfully removed";
         }

@@ -13,20 +13,23 @@ namespace Keepr.Controllers
     public class VaultKeepsController : ControllerBase
     {
         private readonly VaultKeepsService _vks;
-        public VaultKeepsController(VaultKeepsService vks)
+        private readonly VaultsService _vs;
+        public VaultKeepsController(VaultKeepsService vks, VaultsService vs)
         {
             _vks = vks;
+            _vs = vs;
         }
 
-        // TODO get keeps by vault id
-        [HttpGet("{id}")]
+        [HttpGet("{vaultId}/keeps")]
         [Authorize]
-        public ActionResult<IEnumerable<Keep>> GetById([FromBody] Vault v)
+        public ActionResult<IEnumerable<Keep>> GetById(int vaultId)
         {
             try
             {
                 string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return Ok(_vks.GetById(v, userId));
+                // send to vault service to check if vault id is valid and belongs to user
+                var vault = _vs.GetById(vaultId, userId);
+                return Ok(_vks.GetById(vault));
             }
             catch (Exception e)
             {

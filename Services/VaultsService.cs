@@ -13,10 +13,10 @@ namespace Keepr.Services
             _repo = repo;
         }
 
-        // internal IEnumerable<Vault> Get()
-        // {
-        //     return _repo.Get();
-        // }
+        internal IEnumerable<Vault> Get()
+        {
+            return _repo.Get();
+        }
 
         internal Vault GetById(int id, string userId)
         {
