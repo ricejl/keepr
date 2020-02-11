@@ -17,11 +17,12 @@ namespace Keepr.Services
         {
             return _repo.Get();
         }
-
-        internal Keep GetById(int id)
+        internal Keep GetById(int id, string userId)
         {
             var found = _repo.GetById(id);
             if (found == null) { throw new Exception("Invalid id"); }
+            // if found.isPrivate is true and userId doesn't match found.UserId, throw error
+            if (found.IsPrivate && userId != found.UserId) { throw new Exception("Must be logged in to see private keeps"); }
             return found;
         }
         public Keep Create(Keep newKeep)
@@ -29,7 +30,6 @@ namespace Keepr.Services
             _repo.Create(newKeep);
             return newKeep;
         }
-
         internal Keep Edit(Keep update)
         {
             Keep found = _repo.GetById(update.Id);
@@ -46,7 +46,5 @@ namespace Keepr.Services
             _repo.Delete(id);
             return "Successfully deleted.";
         }
-
-
     }
 }

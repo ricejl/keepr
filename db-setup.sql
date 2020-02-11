@@ -49,7 +49,7 @@ USE keepadb;
 
 -- DELETE FROM keeps;
 -- DELETE FROM vaults;
-DELETE FROM vaultkeeps;
+-- DELETE FROM vaultkeeps;
 
 -- -- USE THIS TO CLEAN OUT YOUR DATABASE
 -- DROP TABLE IF EXISTS vaultkeeps;
