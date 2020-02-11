@@ -53,14 +53,14 @@ namespace Keepr.Controllers
             }
         }
 
-        [HttpPut("/removeKeep")]
+        [HttpDelete("{vaultId}/keeps/{keepId}")]
         [Authorize]
-        public ActionResult<String> Edit([FromBody] VaultKeep vk)
+        public ActionResult<String> Delete(int vaultId, int keepId)
         {
             try
             {
-                vk.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                return Ok(_vks.Delete(vk));
+                string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                return Ok(_vks.Delete(vaultId, keepId, userId));
             }
             catch (Exception e)
             {

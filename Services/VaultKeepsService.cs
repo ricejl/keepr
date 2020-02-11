@@ -29,11 +29,12 @@ namespace Keepr.Services
             _repo.Create(newData);
         }
 
-        internal string Delete(VaultKeep vk)
+        internal string Delete(int vaultId, int keepId, string userId)
         {
-            VaultKeep found = _repo.Find(vk);
-            if (found.UserId != vk.UserId) { throw new Exception("Unauthorized"); }
-            _repo.Delete(vk.Id);
+            VaultKeep found = _repo.FindById(vaultId, keepId);
+            if (found == null) { throw new Exception("Keep not saved to vault"); }
+            if (found.UserId != userId) { throw new Exception("Unauthorized"); }
+            _repo.Delete(found.Id);
             return "Successfully removed";
         }
 

@@ -20,6 +20,12 @@ namespace Keepr.Repositories
             return _db.QueryFirstOrDefault<VaultKeep>(sql, vk);
         }
 
+        internal VaultKeep FindById(int vaultId, int keepId)
+        {
+            string sql = "SELECT * FROM vaultkeeps WHERE (vaultId = @VaultId AND keepId = @KeepId)";
+            return _db.QueryFirstOrDefault<VaultKeep>(sql, new { vaultId, keepId });
+        }
+
         internal IEnumerable<Keep> GetById(Vault v)
         {
             string sql = @"SELECT k.* FROM vaultkeeps vk
@@ -43,7 +49,7 @@ namespace Keepr.Repositories
 
         internal void Delete(int id)
         {
-            string sql = "DELETE FROM vaultkeeps WHERE id = @id";
+            string sql = "DELETE FROM vaultkeeps WHERE id = @Id";
             _db.Execute(sql, new { id });
         }
     }
