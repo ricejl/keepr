@@ -17,6 +17,10 @@ namespace Keepr.Services
         {
             return _repo.Get();
         }
+        internal IEnumerable<Keep> GetPrivateKeeps(string userId)
+        {
+            return _repo.GetPrivateKeeps(userId);
+        }
         internal Keep GetById(int id, string userId)
         {
             var found = _repo.GetById(id);
@@ -30,6 +34,7 @@ namespace Keepr.Services
             _repo.Create(newKeep);
             return newKeep;
         }
+
         internal Keep Edit(Keep update)
         {
             Keep found = _repo.GetById(update.Id);
