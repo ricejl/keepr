@@ -12,16 +12,43 @@
         ></i>
         <p class="card-text">{{ keepData.description }}</p>
         <div>
-          <i class="far fa-eye" title="view" @click="viewKeep(keepData)"></i>
-          {{ keepData.views }}
-          <i
-            class="far fa-bookmark"
-            @click="keepKeep(keepData)"
-            title="keep"
-          ></i>
-          {{ keepData.keeps }}
-          <i class="fas fa-share" title="share"></i>
-          {{ keepData.shares }}
+          <!-- SECTION views -->
+          <button class="btn" title="view" @click="viewKeep(keepData)">
+            <i class="far fa-eye"></i>
+            {{ keepData.views }}
+          </button>
+
+          <!-- SECTION keeps -->
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              title="keep"
+            >
+              <i class="far fa-bookmark"></i>
+              {{ keepData.keeps }}
+            </button>
+            <div class="dropdown-menu">
+              <button
+                class="dropdown-item"
+                type="button"
+                v-for="vault in vaults"
+                :key="vault.id"
+                @click="keepKeep(keepData, vault)"
+              >
+                {{ vault.name }}
+              </button>
+            </div>
+          </div>
+
+          <!-- SECTION shares -->
+          <button class="btn">
+            <i class="fas fa-share" title="share"></i>
+            {{ keepData.shares }}
+          </button>
         </div>
       </div>
     </div>
@@ -33,7 +60,11 @@ import NotificationService from "../NotificationService";
 export default {
   name: "keep",
   props: ["keepData"],
-  computed: {},
+  computed: {
+    vaults() {
+      return this.$store.state.vaults;
+    }
+  },
   methods: {
     async editKeep(keep) {
       let keepUpdate = await NotificationService.inputData("Edit keep", keep);
@@ -45,9 +76,23 @@ export default {
       }
     },
     viewKeep(keepData) {
-      // open in popup?
       NotificationService.viewKeep("View", keepData);
       keepData.views++;
+      this.$store.dispatch("editKeep", {
+        update: keepData,
+        id: keepData.id
+      });
+    },
+    keepKeep(keepData, vault) {
+      // add to vault by creating vaultkeep
+      // must give vaultId and keepId
+      this.$store.dispatch("addKeepToVault", {
+        keepId: keepData.id,
+        vaultId: vault.id
+      });
+      // increase keep count
+      // FIXME increases count even if adding keep is unsuccessful
+      keepData.keeps++;
       this.$store.dispatch("editKeep", {
         update: keepData,
         id: keepData.id

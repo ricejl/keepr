@@ -74,6 +74,12 @@ export default new Vuex.Store({
     async makeVault({ commit, dispatch }, newVault) {
       await api.post("vaults", newVault);
       dispatch("getVaults");
+    },
+    //#endregion
+    //#region -- KEEPS in VAULTS --
+    async addKeepToVault({ commit, dispatch }, { keepId, vaultId }) {
+      console.log(keepId, vaultId);
+      await api.post("vaultkeeps", { keepId, vaultId });
     }
     //#endregion
   }
