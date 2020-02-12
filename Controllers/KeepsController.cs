@@ -30,7 +30,7 @@ namespace Keepr.Controllers
             };
         }
 
-        [HttpGet("/user")]
+        [HttpGet("user")]
         public ActionResult<IEnumerable<Keep>> GetPrivateKeeps()
         {
             try

@@ -17,7 +17,8 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    publicKeeps: []
+    publicKeeps: [],
+    userKeeps: []
   },
   mutations: {
     setResource(state, payload) {
@@ -38,7 +39,7 @@ export default new Vuex.Store({
       let res1 = await api.get("keeps");
       commit("setResource", { resource: "publicKeeps", data: res1.data });
       let res2 = await api.get("keeps/user");
-      commit("setResource", { resource: "privateKeeps", data: res2.data });
+      commit("setResource", { resource: "userKeeps", data: res2.data });
     },
     async createKeep({ commit, dispatch }, newKeep) {
       let res = await api.post("keeps", newKeep);
