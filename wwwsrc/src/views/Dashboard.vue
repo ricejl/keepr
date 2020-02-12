@@ -5,7 +5,7 @@
       public {{ publicKeeps }}
       <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep"></keep>
     </div>
-    <div v-if="userKeeps.length > 0">
+    <div class="card-columns" v-if="userKeeps.length > 0">
       user {{ userKeeps }}
       <keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></keep>
     </div>
@@ -37,10 +37,9 @@
           type="checkbox"
           name="isPrivate"
           id="isPrivate"
-          value="false"
-          v-model="newKeep.isPrivate.checked"
+          v-model="newKeep.isPrivate"
         />
-        <label for="isPrivate">public</label>
+        <label for="isPrivate">private</label>
         <button type="submit">Add</button>
       </form>
     </div>
@@ -61,7 +60,7 @@ export default {
         name: "",
         description: "",
         img: "",
-        isPrivate: true
+        isPrivate: false
       }
     };
   },
@@ -85,7 +84,7 @@ export default {
         name: "",
         description: "",
         img: "",
-        isPrivate: true
+        isPrivate: false
       };
     }
   },
