@@ -11,12 +11,18 @@
           @click="deleteKeep(keepData.id)"
         ></i>
         <p class="card-text">{{ keepData.description }}</p>
-        <i class="far fa-eye" title="view"></i>
-        {{ keepData.views }}
-        <i class="far fa-bookmark" title="keep"></i>
-        {{ keepData.keeps }}
-        <i class="fas fa-share" title="share"></i>
-        {{ keepData.shares }}
+        <div>
+          <i class="far fa-eye" title="view" @click="viewKeep(keepData)"></i>
+          {{ keepData.views }}
+          <i
+            class="far fa-bookmark"
+            @click="keepKeep(keepData)"
+            title="keep"
+          ></i>
+          {{ keepData.keeps }}
+          <i class="fas fa-share" title="share"></i>
+          {{ keepData.shares }}
+        </div>
       </div>
     </div>
   </div>
@@ -31,13 +37,20 @@ export default {
   methods: {
     async editKeep(keep) {
       let keepUpdate = await NotificationService.inputData("Edit keep", keep);
-      console.log("keepData and keepUpdate in keep vue", keep, keepUpdate);
       if (keepUpdate) {
         this.$store.dispatch("editKeep", {
           update: keepUpdate,
           id: keep.id
         });
       }
+    },
+    viewKeep(keepData) {
+      // open in popup?
+      keepData.views++;
+      this.$store.dispatch("editKeep", {
+        update: keepData,
+        id: keepData.id
+      });
     },
     deleteKeep(keepId) {
       this.$store.dispatch("deleteKeep", keepId);

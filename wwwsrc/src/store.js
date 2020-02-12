@@ -58,7 +58,6 @@ export default new Vuex.Store({
       dispatch("getKeeps");
     },
     async editKeep({ commit, dispatch }, { update, id }) {
-      console.log("keepupdate and id in store", update, id);
       await api.put("keeps/" + id, update, id);
       dispatch("getKeeps");
     },

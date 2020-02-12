@@ -1,6 +1,11 @@
 <template>
   <div class="name">
-    {{ vaultData }}
+    <div class="card" style="width: 10rem;">
+      <img src="//placehold.it/100x100" class="card-img-top" alt="..." />
+      <div class="card-body">
+        {{ vaultData.name }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,7 +13,9 @@
 export default {
   name: "vault",
   props: ["vaultData"],
-  methods: {}
+  methods: {
+    // TODO delete vault
+  }
 };
 </script>
 
