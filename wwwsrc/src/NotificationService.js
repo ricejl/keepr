@@ -18,8 +18,11 @@ export default class NotificationService {
           `</form>`,
         focusConfirm: false,
         preConfirm: () => {
+          // @ts-ignore
           let name = document.getElementById("name-edit").value;
+          // @ts-ignore
           let description = document.getElementById("description-edit").value;
+          // @ts-ignore
           let img = document.getElementById("img-edit").value;
           //   if (!name || !description || !img) {
           //     Swal.showValidationMessage("Please fill out all fields");

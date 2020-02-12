@@ -44,7 +44,8 @@ namespace Keepr.Repositories
             UPDATE vaults
             SET
             name = @Name,
-            description = @Description";
+            description = @Description
+            WHERE id = @Id";
             _db.Execute(sql, update);
         }
 

@@ -71,6 +71,28 @@
         </form>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <h4>Add New Vault</h4>
+        <form @submit.prevent="createVault">
+          <input
+            type="text"
+            id="name"
+            placeholder="Title"
+            v-model="newVault.name"
+            required
+          />
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            v-model="newVault.description"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -89,6 +111,10 @@ export default {
         description: "",
         img: "",
         isPrivate: false
+      },
+      newVault: {
+        name: "",
+        description: ""
       }
     };
   },
@@ -113,6 +139,14 @@ export default {
         description: "",
         img: "",
         isPrivate: false
+      };
+    },
+    makeVault() {
+      let vault = this.newVault;
+      this.$store.dispatch("makeVault", vault);
+      this.newVault = {
+        name: "",
+        description: ""
       };
     }
   },
