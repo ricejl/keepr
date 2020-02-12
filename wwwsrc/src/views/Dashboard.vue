@@ -1,8 +1,14 @@
 <template>
   <div class="dashboard">
     <h1>WELCOME TO THE DASHBOARD</h1>
-    <div v-if="publicKeeps.length > 0">public {{ publicKeeps }}</div>
-    <div v-if="userKeeps.length > 0">user {{ userKeeps }}</div>
+    <div class="card-columns" v-if="publicKeeps.length > 0">
+      public {{ publicKeeps }}
+      <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep"></keep>
+    </div>
+    <div v-if="userKeeps.length > 0">
+      user {{ userKeeps }}
+      <keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></keep>
+    </div>
     <div>
       <h4>Add New Keep</h4>
       <form @submit.prevent="createKeep">
@@ -22,9 +28,9 @@
         />
         <input
           type="text"
-          id="imgUrl"
+          id="img"
           placeholder="Image Url"
-          v-model="newKeep.imgUrl"
+          v-model="newKeep.img"
           required
         />
         <input
@@ -42,7 +48,10 @@
 </template>
 
 <script>
+import Keep from "../components/Keep";
+
 export default {
+  name: "dashboard",
   mounted() {
     this.$store.dispatch("getKeeps");
   },
@@ -51,7 +60,7 @@ export default {
       newKeep: {
         name: "",
         description: "",
-        imgUrl: "",
+        img: "",
         isPrivate: true
       }
     };
@@ -75,10 +84,13 @@ export default {
       this.newKeep = {
         name: "",
         description: "",
-        imgUrl: "",
+        img: "",
         isPrivate: true
       };
     }
+  },
+  components: {
+    Keep
   }
 };
 </script>
