@@ -1,30 +1,75 @@
 <template>
-  <div class="dashboard">
-    <h1>WELCOME TO THE DASHBOARD</h1>
-    <div class="card-columns" v-if="publicKeeps.length > 0">
+  <div class="dashboard container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1>WELCOME TO THE DASHBOARD</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card-columns" v-if="publicKeeps.length > 0">
+          <keep
+            v-for="keep in publicKeeps"
+            :key="keep.id"
+            :keepData="keep"
+          ></keep>
+        </div>
+      </div>
       <!-- public {{ publicKeeps }} -->
-      <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep"></keep>
     </div>
-    <div class="card-columns" v-if="userKeeps.length > 0">
-      <!-- user {{ userKeeps }} -->
-      <keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></keep>
+    <hr />
+    <div class="row">
+      <div class="col">
+        <h3>Mine. All mine.</h3>
+      </div>
     </div>
-    <div>
-      <h4>Add New Keep</h4>
-      <form @submit.prevent="createKeep">
-        <input type="text" id="name" placeholder="Title" v-model="newKeep.name" required />
-        <input
-          type="text"
-          id="description"
-          placeholder="Description"
-          v-model="newKeep.description"
-          required
-        />
-        <input type="text" id="img" placeholder="Image Url" v-model="newKeep.img" required />
-        <input type="checkbox" name="isPrivate" id="isPrivate" v-model="newKeep.isPrivate" />
-        <label for="isPrivate">private</label>
-        <button type="submit">Add</button>
-      </form>
+    <div class="row">
+      <div class="col">
+        <div class="card-columns" v-if="userKeeps.length > 0">
+          <!-- user {{ userKeeps }} -->
+          <keep
+            v-for="keep in userKeeps"
+            :key="keep.id"
+            :keepData="keep"
+          ></keep>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h4>Add New Keep</h4>
+        <form @submit.prevent="createKeep">
+          <input
+            type="text"
+            id="name"
+            placeholder="Title"
+            v-model="newKeep.name"
+            required
+          />
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            v-model="newKeep.description"
+            required
+          />
+          <input
+            type="text"
+            id="img"
+            placeholder="Image Url"
+            v-model="newKeep.img"
+            required
+          />
+          <input
+            type="checkbox"
+            name="isPrivate"
+            id="isPrivate"
+            v-model="newKeep.isPrivate"
+          />
+          <label for="isPrivate">private</label>
+          <button type="submit">Add</button>
+        </form>
+      </div>
     </div>
   </div>
 </template>

@@ -4,11 +4,7 @@
       <img :src="keepData.img" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ keepData.name }}</h5>
-        <i
-          class="far fa-edit"
-          title="edit"
-          @click="editKeep(keepData, keepData.id)"
-        ></i>
+        <i class="far fa-edit" title="edit" @click="editKeep(keepData)"></i>
         <i
           class="far fa-times-circle"
           title="delete"
@@ -28,17 +24,19 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService";
 export default {
   name: "keep",
   props: ["keepData"],
   computed: {},
   methods: {
-    async editKeep(keep, keepId) {
-      let currentKeep = await NotificationService.inputData("Keep", keep);
-      if (currentKeep) {
+    async editKeep(keep) {
+      let keepUpdate = await NotificationService.inputData("Edit keep", keep);
+      console.log("keepData and keepUpdate in keep vue", keep, keepUpdate);
+      if (keepUpdate) {
         this.$store.dispatch("editKeep", {
           update: keepUpdate,
-          Id: keepId
+          id: keep.id
         });
       }
     },

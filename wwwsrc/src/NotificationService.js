@@ -6,24 +6,24 @@ export default class NotificationService {
         title,
         html:
           `<form>` +
-          `<label class="mb-0" for="name">Title</label>` +
-          `<input id="name" class="swal2-input" value="${currentKeep.name ||
+          `<label class="mb-0" for="name-edit">Title</label>` +
+          `<input id="name-edit" class="swal2-input" value="${currentKeep.name ||
             ""}" placeholder="Title">` +
-          `<label class="mb-0" for="description">Description</label>` +
-          `<input id="description" class="swal2-input" value="${currentKeep.description ||
+          `<label class="mb-0" for="description-edit">Description</label>` +
+          `<input id="description-edit" class="swal2-input" value="${currentKeep.description ||
             ""}" placeholder="Description">` +
-          `<label class="mb-0" for="img">Image URL</label>` +
-          `<input id="img" class="swal2-input" value="${currentKeep.img ||
+          `<label class="mb-0" for="img-edit">Image URL</label>` +
+          `<input id="img-edit" class="swal2-input" value="${currentKeep.img ||
             ""}" placeholder="Enter image url">` +
           `</form>`,
         focusConfirm: false,
         preConfirm: () => {
-          let name = document.getElementById("name").value;
-          let description = document.getElementById("description").value;
-          let img = document.getElementById("img").value;
-          if (!name || !description || !img) {
-            Swal.showValidationMessage("Please fill out all fields");
-          }
+          let name = document.getElementById("name-edit").value;
+          let description = document.getElementById("description-edit").value;
+          let img = document.getElementById("img-edit").value;
+          //   if (!name || !description || !img) {
+          //     Swal.showValidationMessage("Please fill out all fields");
+          //   }
           return [name, description, img];
         }
       });
