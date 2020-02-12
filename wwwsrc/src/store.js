@@ -75,6 +75,10 @@ export default new Vuex.Store({
       await api.post("vaults", newVault);
       dispatch("getVaults");
     },
+    async deleteVault({ commit, dispatch }, vaultId) {
+      await api.delete("vaults/" + vaultId, vaultId);
+      dispatch("getVaults");
+    },
     //#endregion
     //#region -- KEEPS in VAULTS --
     async addKeepToVault({ commit, dispatch }, { keepId, vaultId }) {
