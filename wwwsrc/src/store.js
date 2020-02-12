@@ -18,7 +18,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     publicKeeps: [],
-    userKeeps: []
+    userKeeps: [],
+    vaults: []
   },
   mutations: {
     setResource(state, payload) {
@@ -26,15 +27,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // #region -- AUTH --
+    //#region -- AUTH --
     setBearer({}, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    // #endregion
-    // #region -- KEEPS --
+    //#endregion
+    //#region -- KEEPS --
     async getKeeps({ commit, dispatch }) {
       let res1 = await api.get("keeps");
       commit("setResource", { resource: "publicKeeps", data: res1.data });
@@ -64,7 +65,17 @@ export default new Vuex.Store({
     async deleteKeep({ commit, dispatch }, keepId) {
       await api.delete("keeps/" + keepId);
       dispatch("getKeeps");
+    },
+    //#endregion
+    //#region -- VAULTS --
+    async getVaults({ commit, dispatch }) {
+      let res = await api.get("vaults");
+      commit("setResource", { resource: "vaults", data: res.data });
+    },
+    async makeVault({ commit, dispatch }, newVault) {
+      await api.post("vaults", newVault);
+      dispatch("getVaults");
     }
-    // #endregion
+    //#endregion
   }
 });

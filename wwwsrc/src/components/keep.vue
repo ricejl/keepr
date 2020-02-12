@@ -11,7 +11,6 @@
           @click="deleteKeep(keepData.id)"
         ></i>
         <p class="card-text">{{ keepData.description }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
         <i class="far fa-eye" title="view"></i>
         {{ keepData.views }}
         <i class="far fa-bookmark" title="keep"></i>

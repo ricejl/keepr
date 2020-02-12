@@ -37,6 +37,14 @@
     </div>
     <div class="row">
       <div class="col">
+        <div>
+          <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault">
+          </vault>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <h4>Add New Keep</h4>
         <form @submit.prevent="createKeep">
           <input
@@ -74,7 +82,7 @@
     <div class="row">
       <div class="col">
         <h4>Add New Vault</h4>
-        <form @submit.prevent="createVault">
+        <form @submit.prevent="makeVault">
           <input
             type="text"
             id="name"
@@ -98,11 +106,13 @@
 
 <script>
 import Keep from "../components/Keep";
+import Vault from "../components/Vault";
 
 export default {
   name: "dashboard",
   mounted() {
     this.$store.dispatch("getKeeps");
+    this.$store.dispatch("getVaults");
   },
   data() {
     return {
@@ -128,6 +138,9 @@ export default {
     },
     userKeeps() {
       return this.$store.state.userKeeps;
+    },
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
   methods: {
@@ -151,7 +164,8 @@ export default {
     }
   },
   components: {
-    Keep
+    Keep,
+    Vault
   }
 };
 </script>
