@@ -41,4 +41,17 @@ export default class NotificationService {
       return false;
     }
   }
+
+  static async viewKeep(title = "See Keep", keepData) {
+    try {
+      Swal.fire({
+        title: keepData.name,
+        text: keepData.description,
+        imageUrl: keepData.img,
+        imageAlt: "Keep image"
+      });
+    } catch (error) {
+      return false;
+    }
+  }
 }

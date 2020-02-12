@@ -46,6 +46,7 @@ export default {
     },
     viewKeep(keepData) {
       // open in popup?
+      NotificationService.viewKeep("View", keepData);
       keepData.views++;
       this.$store.dispatch("editKeep", {
         update: keepData,
