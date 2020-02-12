@@ -42,7 +42,11 @@ export default new Vuex.Store({
       commit("setResource", { resource: "userKeeps", data: res2.data });
     },
     async createKeep({ commit, dispatch }, newKeep) {
-      let res = await api.post("keeps", newKeep);
+      await api.post("keeps", newKeep);
+      dispatch("getKeeps");
+    },
+    async deleteKeep({ commit, dispatch }, keepId) {
+      await api.delete("keeps/" + keepId);
       dispatch("getKeeps");
     }
     // #endregion

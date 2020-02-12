@@ -2,23 +2,17 @@
   <div class="dashboard">
     <h1>WELCOME TO THE DASHBOARD</h1>
     <div class="card-columns" v-if="publicKeeps.length > 0">
-      public {{ publicKeeps }}
+      <!-- public {{ publicKeeps }} -->
       <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep"></keep>
     </div>
     <div class="card-columns" v-if="userKeeps.length > 0">
-      user {{ userKeeps }}
+      <!-- user {{ userKeeps }} -->
       <keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></keep>
     </div>
     <div>
       <h4>Add New Keep</h4>
       <form @submit.prevent="createKeep">
-        <input
-          type="text"
-          id="name"
-          placeholder="Title"
-          v-model="newKeep.name"
-          required
-        />
+        <input type="text" id="name" placeholder="Title" v-model="newKeep.name" required />
         <input
           type="text"
           id="description"
@@ -26,19 +20,8 @@
           v-model="newKeep.description"
           required
         />
-        <input
-          type="text"
-          id="img"
-          placeholder="Image Url"
-          v-model="newKeep.img"
-          required
-        />
-        <input
-          type="checkbox"
-          name="isPrivate"
-          id="isPrivate"
-          v-model="newKeep.isPrivate"
-        />
+        <input type="text" id="img" placeholder="Image Url" v-model="newKeep.img" required />
+        <input type="checkbox" name="isPrivate" id="isPrivate" v-model="newKeep.isPrivate" />
         <label for="isPrivate">private</label>
         <button type="submit">Add</button>
       </form>
