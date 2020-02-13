@@ -25,7 +25,6 @@
     <div class="row">
       <div class="col">
         <div class="card-columns" v-if="userKeeps.length > 0">
-          <!-- user {{ userKeeps }} -->
           <keep
             v-for="keep in userKeeps"
             :key="keep.id"

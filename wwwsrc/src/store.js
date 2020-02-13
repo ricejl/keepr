@@ -19,7 +19,8 @@ export default new Vuex.Store({
   state: {
     publicKeeps: [],
     userKeeps: [],
-    vaults: []
+    vaults: [],
+    activeVault: {}
   },
   mutations: {
     setResource(state, payload) {
@@ -71,12 +72,14 @@ export default new Vuex.Store({
     //#endregion
     //#region -- KEEPS in VAULTS --
     async getKeepsByVaultId({ commit, dispatch }, vaultId) {
-      let res = await api.get("vaultkeeps/" + vaultId);
-      commit("setActiveVault", res.data);
-      // FIXME pickup here. res should be array of keeps for one vault
+      let res = await api.get("vaultkeeps/" + vaultId + "/keeps");
+      commit("setResource", { resource: "activeVault", data: res.data });
     },
     async addKeepToVault({ commit, dispatch }, { keepId, vaultId }) {
       await api.post("vaultkeeps", { keepId, vaultId });
+    },
+    async removeKeepFromVault({ commit, dispatch }, { keepId, vaultId }) {
+      await api.delete("vaultkeeps/" + vaultId + "/keeps/" + keepId);
     }
     //#endregion
   }

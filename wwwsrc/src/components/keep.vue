@@ -10,6 +10,11 @@
           title="delete"
           @click="deleteKeep(keepData.id)"
         ></i>
+        <i
+          class="fas fa-times"
+          title="remove"
+          @click="removeKeepFromVault(keepData.id)"
+        ></i>
         <p class="card-text">{{ keepData.description }}</p>
         <div>
           <!-- SECTION views -->
@@ -101,6 +106,13 @@ export default {
     },
     deleteKeep(keepId) {
       this.$store.dispatch("deleteKeep", keepId);
+    },
+    removeKeepFromVault(keepId) {
+      this.$store.dispatch(
+        "removeKeepFromVault",
+        keepId,
+        this.$route.params.vaultId
+      );
     }
   }
 };
