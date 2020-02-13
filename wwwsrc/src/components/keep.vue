@@ -7,11 +7,13 @@
         <i class="far fa-edit" title="edit" @click="editKeep(keepData)"></i>
         <i
           class="far fa-times-circle"
+          v-if="!this.$route.params.vaultId"
           title="delete"
           @click="deleteKeep(keepData.id)"
         ></i>
         <i
           class="fas fa-times"
+          v-if="this.$route.params.vaultId"
           title="remove"
           @click="removeKeepFromVault(keepData.id)"
         ></i>
