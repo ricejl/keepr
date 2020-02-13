@@ -1,7 +1,13 @@
 <template>
-  <div class="name">
+  <div class="vault-component">
     <div class="card" style="width: 10rem;">
-      <img src="//placehold.it/100x100" class="card-img-top" alt="..." />
+      <router-link :to="{ name: 'vault', params: { vauldId: vaultData.id } }">
+        <img
+          src="https://sfbeerweek.org/upload/e3fd652ba506415d/menageriesmall2.jpg"
+          class="card-img-top"
+          alt="vault-image"
+        />
+      </router-link>
       <div class="card-body">
         {{ vaultData.name }}
         <i
@@ -16,7 +22,7 @@
 
 <script>
 export default {
-  name: "vault",
+  name: "vault-component",
   mounted() {},
   props: ["vaultData"],
   methods: {

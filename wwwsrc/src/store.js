@@ -42,17 +42,6 @@ export default new Vuex.Store({
       let res2 = await api.get("keeps/user");
       commit("setResource", { resource: "userKeeps", data: res2.data });
     },
-    // async getKeepById({ commit, dispatch }, keepId) {
-    //   let res = await api.get("keeps/" + keepId)
-    //   // if keep is private, commit to userKeeps, otherwise to publicKeeps
-    //   // NOTE not gonna work because it blows away keeps with single keep
-    //   if (res.data.isPrivate) {
-    //     commit("setResource", { resource: "userKeeps", data: res.data})
-    //   }
-    //   else if (!res.data.isPrivate) {
-    //     commit("setResource", { resource: "publicKeeps", data: res.data})
-    //   }
-    // },
     async createKeep({ commit, dispatch }, newKeep) {
       await api.post("keeps", newKeep);
       dispatch("getKeeps");
@@ -81,8 +70,12 @@ export default new Vuex.Store({
     },
     //#endregion
     //#region -- KEEPS in VAULTS --
+    async getKeepsByVaultId({ commit, dispatch }, vaultId) {
+      let res = await api.get("vaultkeeps/" + vaultId);
+      commit("setActiveVault", res.data);
+      // FIXME pickup here. res should be array of keeps for one vault
+    },
     async addKeepToVault({ commit, dispatch }, { keepId, vaultId }) {
-      console.log(keepId, vaultId);
       await api.post("vaultkeeps", { keepId, vaultId });
     }
     //#endregion

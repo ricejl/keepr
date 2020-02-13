@@ -5,7 +5,7 @@
         <h1>WELCOME TO THE DASHBOARD</h1>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col">
         <div class="card-columns" v-if="publicKeeps.length > 0">
           <keep
@@ -15,8 +15,7 @@
           ></keep>
         </div>
       </div>
-      <!-- public {{ publicKeeps }} -->
-    </div>
+    </div> -->
     <hr />
     <div class="row">
       <div class="col">
@@ -37,10 +36,18 @@
     </div>
     <div class="row">
       <div class="col">
-        <div>
-          <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault">
-          </vault>
-        </div>
+        <h3>Vaults</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex" v-if="vaults.length > 0">
+        <vault
+          class="d-inline"
+          v-for="vault in vaults"
+          :key="vault.id"
+          :vaultData="vault"
+        >
+        </vault>
       </div>
     </div>
     <div class="row">
@@ -49,21 +56,21 @@
         <form @submit.prevent="createKeep">
           <input
             type="text"
-            id="name"
+            id="keep-name"
             placeholder="Title"
             v-model="newKeep.name"
             required
           />
           <input
             type="text"
-            id="description"
+            id="keep-description"
             placeholder="Description"
             v-model="newKeep.description"
             required
           />
           <input
             type="text"
-            id="img"
+            id="keep-img"
             placeholder="Image Url"
             v-model="newKeep.img"
             required
@@ -85,14 +92,14 @@
         <form @submit.prevent="makeVault">
           <input
             type="text"
-            id="name"
+            id="vault-name"
             placeholder="Title"
             v-model="newVault.name"
             required
           />
           <input
             type="text"
-            id="description"
+            id="vault-description"
             placeholder="Description"
             v-model="newVault.description"
             required
@@ -129,13 +136,13 @@ export default {
     };
   },
   computed: {
-    publicKeeps() {
-      return (
-        this.$store.state.publicKeeps || {
-          title: "Loading..."
-        }
-      );
-    },
+    // publicKeeps() {
+    //   return (
+    //     this.$store.state.publicKeeps || {
+    //       title: "Loading..."
+    //     }
+    //   );
+    // },
     userKeeps() {
       return this.$store.state.userKeeps;
     },

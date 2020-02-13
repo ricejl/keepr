@@ -92,6 +92,7 @@ export default {
       });
       // increase keep count
       // FIXME increases count even if adding keep is unsuccessful
+      // dispatch this next bit within addKeepToVault in store within a try catch
       keepData.keeps++;
       this.$store.dispatch("editKeep", {
         update: keepData,
