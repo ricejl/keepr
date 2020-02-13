@@ -15,7 +15,6 @@
           ></keep>
         </div>
       </div>
-      <!-- public {{ publicKeeps }} -->
     </div>
   </div>
 </template>

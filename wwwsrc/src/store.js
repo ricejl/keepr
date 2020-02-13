@@ -80,6 +80,7 @@ export default new Vuex.Store({
     },
     async removeKeepFromVault({ commit, dispatch }, { keepId, vaultId }) {
       await api.delete("vaultkeeps/" + vaultId + "/keeps/" + keepId);
+      dispatch("getKeepsByVaultId", vaultId);
     }
     //#endregion
   }

@@ -108,11 +108,10 @@ export default {
       this.$store.dispatch("deleteKeep", keepId);
     },
     removeKeepFromVault(keepId) {
-      this.$store.dispatch(
-        "removeKeepFromVault",
-        keepId,
-        this.$route.params.vaultId
-      );
+      this.$store.dispatch("removeKeepFromVault", {
+        keepId: keepId,
+        vaultId: this.$route.params.vaultId
+      });
     }
   }
 };
