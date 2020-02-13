@@ -75,8 +75,13 @@ export default new Vuex.Store({
       let res = await api.get("vaultkeeps/" + vaultId + "/keeps");
       commit("setResource", { resource: "activeVault", data: res.data });
     },
-    async addKeepToVault({ commit, dispatch }, { keepId, vaultId }) {
-      await api.post("vaultkeeps", { keepId, vaultId });
+    async addKeepToVault({ commit, dispatch }, { keepData, vaultId }) {
+      let keepId = keepData.id;
+      let res = await api.post("vaultkeeps", { keepId, vaultId });
+      if (res.data) {
+        keepData.keeps++;
+        dispatch("editKeep", { update: keepData, id: keepId });
+      }
     },
     async removeKeepFromVault({ commit, dispatch }, { keepId, vaultId }) {
       await api.delete("vaultkeeps/" + vaultId + "/keeps/" + keepId);

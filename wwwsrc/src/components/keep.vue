@@ -91,19 +91,9 @@ export default {
       });
     },
     keepKeep(keepData, vault) {
-      // add to vault by creating vaultkeep
-      // must give vaultId and keepId
       this.$store.dispatch("addKeepToVault", {
-        keepId: keepData.id,
+        keepData: keepData,
         vaultId: vault.id
-      });
-      // increase keep count
-      // FIXME increases count even if adding keep is unsuccessful
-      // dispatch this next bit within addKeepToVault in store within a try catch
-      keepData.keeps++;
-      this.$store.dispatch("editKeep", {
-        update: keepData,
-        id: keepData.id
       });
     },
     deleteKeep(keepId) {
