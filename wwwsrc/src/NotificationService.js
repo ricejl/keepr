@@ -55,8 +55,8 @@ export default class NotificationService {
     }
   }
 
-  static async verifyDelete(title = "Delete", id) {
-    Swal.fire({
+  static async verifyAction(title = "Action") {
+    return Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -64,11 +64,13 @@ export default class NotificationService {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then(result => {
-      if (result.value) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-        // initiate delete fn
-      }
-    });
+    })
+      .then(result => {
+        console.log("result value", result.value ? true : false);
+        return result.value ? true : false;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 }
