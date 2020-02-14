@@ -24,7 +24,7 @@ export default new Router({
       beforeEnter: authGuard
     },
     {
-      path: "/vault",
+      path: "/vault/:vaultId",
       name: "vault",
       component: Vault,
       beforeEnter: authGuard

@@ -19,7 +19,6 @@ export default {
   name: "vault",
   mounted() {
     this.$store.dispatch("getKeepsByVaultId", this.$route.params.vaultId);
-    // FIXME this fails on pg refresh. vaultid is undefined
     this.$store.dispatch("getVaultById", this.$route.params.vaultId);
   },
   params: ["vaultId"],
