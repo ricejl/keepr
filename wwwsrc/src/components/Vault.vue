@@ -8,10 +8,10 @@
           alt="vault-image"
         />
       </router-link>
-      <div class="card-body bg-light">
+      <div class="card-body bg-light text-center">
         {{ vaultData.name }}
         <i
-          class="far fa-times-circle"
+          class="far fa-times-circle delete-vault"
           title="delete"
           @click="deleteVault(vaultData.id)"
         ></i>
@@ -33,5 +33,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.card-body {
+  position: relative;
+}
+.delete-vault {
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
+  cursor: pointer;
+}
 </style>
