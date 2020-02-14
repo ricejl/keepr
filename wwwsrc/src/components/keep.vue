@@ -1,5 +1,5 @@
 <template>
-  <div class="keep card border-none" style="width: 18rem;">
+  <div class="keep card border-none bg-beige" style="width: 18rem;">
     <div class="text-center p-4">
       <img src="../assets/frame.png" class="border-frame" />
       <img :src="keepData.img" class="card-img-top" alt="..." />
@@ -111,6 +111,9 @@ export default {
 </script>
 
 <style>
+.bg-beige {
+  background-color: #cfcebd;
+}
 .border-none {
   border: none;
 }

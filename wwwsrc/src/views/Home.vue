@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid bg-img pt-3">
     <div class="row">
       <div class="col">
         <h1>Animal!</h1>
@@ -8,11 +8,7 @@
     <div class="row">
       <div class="col">
         <div class="card-columns" v-if="publicKeeps.length > 0">
-          <keep
-            v-for="keep in publicKeeps"
-            :key="keep.id"
-            :keepData="keep"
-          ></keep>
+          <keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep"></keep>
         </div>
       </div>
     </div>
@@ -45,3 +41,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.bg-img {
+  background-image: url("https://images.unsplash.com/photo-1546801226-104a8000e041?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+}
+</style>

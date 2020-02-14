@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container-fluid bg-img pt-3">
     <div class="row">
       <div class="col">
         <h1>WELCOME TO THE DASHBOARD</h1>
@@ -15,7 +15,7 @@
           ></keep>
         </div>
       </div>
-    </div> -->
+    </div>-->
     <hr />
     <div class="row">
       <div class="col">
@@ -25,11 +25,7 @@
     <div class="row">
       <div class="col">
         <div class="card-columns" v-if="userKeeps.length > 0">
-          <keep
-            v-for="keep in userKeeps"
-            :key="keep.id"
-            :keepData="keep"
-          ></keep>
+          <keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></keep>
         </div>
       </div>
     </div>
@@ -40,26 +36,14 @@
     </div>
     <div class="row">
       <div class="col d-flex" v-if="vaults.length > 0">
-        <vault
-          class="d-inline"
-          v-for="vault in vaults"
-          :key="vault.id"
-          :vaultData="vault"
-        >
-        </vault>
+        <vault class="d-inline" v-for="vault in vaults" :key="vault.id" :vaultData="vault"></vault>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <h4>Add New Keep</h4>
         <form @submit.prevent="createKeep">
-          <input
-            type="text"
-            id="keep-name"
-            placeholder="Title"
-            v-model="newKeep.name"
-            required
-          />
+          <input type="text" id="keep-name" placeholder="Title" v-model="newKeep.name" required />
           <input
             type="text"
             id="keep-description"
@@ -67,19 +51,8 @@
             v-model="newKeep.description"
             required
           />
-          <input
-            type="text"
-            id="keep-img"
-            placeholder="Image Url"
-            v-model="newKeep.img"
-            required
-          />
-          <input
-            type="checkbox"
-            name="isPrivate"
-            id="isPrivate"
-            v-model="newKeep.isPrivate"
-          />
+          <input type="text" id="keep-img" placeholder="Image Url" v-model="newKeep.img" required />
+          <input type="checkbox" name="isPrivate" id="isPrivate" v-model="newKeep.isPrivate" />
           <label for="isPrivate">private</label>
           <button type="submit">Add</button>
         </form>
@@ -89,13 +62,7 @@
       <div class="col">
         <h4>Add New Vault</h4>
         <form @submit.prevent="makeVault">
-          <input
-            type="text"
-            id="vault-name"
-            placeholder="Title"
-            v-model="newVault.name"
-            required
-          />
+          <input type="text" id="vault-name" placeholder="Title" v-model="newVault.name" required />
           <input
             type="text"
             id="vault-description"
@@ -176,4 +143,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.bg-img {
+  background-image: url("https://images.unsplash.com/photo-1546801226-104a8000e041?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+}
+body {
+  font-family: "Limelight", cursive;
+}
+</style>

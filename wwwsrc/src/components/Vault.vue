@@ -8,7 +8,7 @@
           alt="vault-image"
         />
       </router-link>
-      <div class="card-body">
+      <div class="card-body bg-light">
         {{ vaultData.name }}
         <i
           class="far fa-times-circle"
@@ -33,4 +33,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>
