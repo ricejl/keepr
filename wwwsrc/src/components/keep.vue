@@ -105,11 +105,14 @@ export default {
         this.$store.dispatch("deleteKeep", keepId);
       }
     },
-    removeKeepFromVault(keepId) {
-      this.$store.dispatch("removeKeepFromVault", {
-        keepId: keepId,
-        vaultId: this.$route.params.vaultId
-      });
+    async removeKeepFromVault(keepId) {
+      let valid = await NotificationService.verifyAction("Remove");
+      if (valid) {
+        this.$store.dispatch("removeKeepFromVault", {
+          keepId: keepId,
+          vaultId: this.$route.params.vaultId
+        });
+      }
     }
   }
 };

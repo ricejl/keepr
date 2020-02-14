@@ -66,7 +66,6 @@ export default class NotificationService {
       confirmButtonText: "Yes, delete it!"
     })
       .then(result => {
-        console.log("result value", result.value ? true : false);
         return result.value ? true : false;
       })
       .catch(error => {

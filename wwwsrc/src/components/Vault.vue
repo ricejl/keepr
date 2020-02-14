@@ -21,13 +21,17 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService";
 export default {
   name: "vault-component",
   mounted() {},
   props: ["vaultData"],
   methods: {
-    deleteVault(id) {
-      this.$store.dispatch("deleteVault", id);
+    async deleteVault(id) {
+      let valid = await NotificationService.verifyAction("Delete");
+      if (valid) {
+        this.$store.dispatch("deleteVault", id);
+      }
     }
   }
 };

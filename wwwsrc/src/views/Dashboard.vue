@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard container-fluid bg-img pt-3">
+  <div class="dashboard container-fluid bg-img pt-3 pb-3">
     <div class="row">
       <div class="col">
         <h1>WELCOME TO THE DASHBOARD</h1>
