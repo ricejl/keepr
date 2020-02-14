@@ -36,14 +36,16 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              title="keep"
+              title="add to vault"
             >
               <i class="far fa-bookmark"></i>
               {{ keepData.keeps }}
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu bg-light">
+              <div class="pl-2">Keep in...</div>
+              <!-- <div class="dropdown-divider"></div> -->
               <button
-                class="dropdown-item"
+                class="dropdown-item bg-light"
                 type="button"
                 v-for="vault in vaults"
                 :key="vault.id"
@@ -134,11 +136,15 @@ button {
   /* FIXME btns are behind frame and cannot be selected */
   position: absolute;
   top: 0.1em;
-  right: 0.4em;
+  right: 0.2em;
+}
+.fa-edit,
+.fa-times-circle {
   opacity: 0.3;
 }
-.edit-delete-btns:hover {
-  opacity: 0.7;
+.fa-edit:hover,
+.fa-times-circle:hover {
+  opacity: 0.5;
 }
 .position-custom {
   position: relative;

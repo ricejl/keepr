@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
+    <router-link class="navbar-brand keepr-logo" :to="{ name: 'home' }">
+      <h2>Keepr</h2>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -22,7 +24,7 @@
           v-if="$auth.isAuthenticated"
           :class="{ active: $route.name == 'dashboard' }"
         >
-          <router-link class="nav-link" :to="{ name: 'dashboard' }">My-Dashboard</router-link>
+          <router-link class="nav-link" :to="{ name: 'dashboard' }">Dashboard</router-link>
         </li>
       </ul>
       <span class="navbar-text">
@@ -58,4 +60,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.keepr-logo {
+  text-shadow: 0 0 4px rgb(156, 37, 37);
+}
+</style>

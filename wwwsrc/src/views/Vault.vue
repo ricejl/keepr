@@ -27,5 +27,6 @@ export default {
 <style>
 .bg-img {
   background-image: url("https://images.unsplash.com/photo-1546801226-104a8000e041?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+  background-attachment: fixed;
 }
 </style>

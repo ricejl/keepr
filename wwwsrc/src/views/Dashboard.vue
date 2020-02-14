@@ -29,6 +29,7 @@
         </div>
       </div>
     </div>
+    <hr />
     <div class="row">
       <div class="col">
         <h3>Vaults</h3>
@@ -39,6 +40,7 @@
         <vault class="d-inline" v-for="vault in vaults" :key="vault.id" :vaultData="vault"></vault>
       </div>
     </div>
+    <hr />
     <div class="row">
       <div class="col">
         <h4>Add New Keep</h4>
@@ -146,6 +148,7 @@ export default {
 <style>
 .bg-img {
   background-image: url("https://images.unsplash.com/photo-1546801226-104a8000e041?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+  background-attachment: fixed;
 }
 body {
   font-family: "Limelight", cursive;
