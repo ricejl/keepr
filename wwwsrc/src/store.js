@@ -20,7 +20,8 @@ export default new Vuex.Store({
     publicKeeps: [],
     userKeeps: [],
     vaults: [],
-    activeVault: {}
+    activeVault: {},
+    keepsInActiveVault: {}
   },
   mutations: {
     setResource(state, payload) {
@@ -61,6 +62,10 @@ export default new Vuex.Store({
       let res = await api.get("vaults");
       commit("setResource", { resource: "vaults", data: res.data });
     },
+    async getVaultById({ commit, dispatch }, vaultId) {
+      let res = await api.get("vaults/" + vaultId, vaultId);
+      commit("setResource", { resource: "activeVault", data: res.data });
+    },
     async makeVault({ commit, dispatch }, newVault) {
       await api.post("vaults", newVault);
       dispatch("getVaults");
@@ -73,7 +78,7 @@ export default new Vuex.Store({
     //#region -- KEEPS in VAULTS --
     async getKeepsByVaultId({ commit, dispatch }, vaultId) {
       let res = await api.get("vaultkeeps/" + vaultId + "/keeps");
-      commit("setResource", { resource: "activeVault", data: res.data });
+      commit("setResource", { resource: "keepsInActiveVault", data: res.data });
     },
     async addKeepToVault({ commit, dispatch }, { keepData, vaultId }) {
       let keepId = keepData.id;

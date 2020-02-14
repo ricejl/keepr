@@ -1,7 +1,14 @@
 <template>
-  <div class="vault bg-img pt-3">
-    <div class="card-columns" v-show="keeps.length > 0">
-      <keep v-for="keep in keeps" :key="keep.id" :keepData="keep"></keep>
+  <div class="vault container-fluid bg-img pt-3">
+    <div class="row">
+      <div class="col">
+        <h3>{{activeVault.name}}</h3>
+        <h5>{{activeVault.description}}</h5>
+        <hr />
+        <div class="card-columns" v-show="keeps.length > 0">
+          <keep v-for="keep in keeps" :key="keep.id" :keepData="keep"></keep>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -13,10 +20,14 @@ export default {
   mounted() {
     this.$store.dispatch("getKeepsByVaultId", this.$route.params.vaultId);
     // FIXME this fails on pg refresh. vaultid is undefined
+    this.$store.dispatch("getVaultById", this.$route.params.vaultId);
   },
   params: ["vaultId"],
   computed: {
     keeps() {
+      return this.$store.state.keepsInActiveVault;
+    },
+    activeVault() {
       return this.$store.state.activeVault;
     }
   },
